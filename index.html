@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manhunt - Официальный фан-сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #0d0d0d;
+            color: #e6e6e6;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1a1a1a;
+            padding: 20px 0;
+            border-bottom: 2px solid #cc0000;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #cc0000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        nav ul li a:hover {
+            color: #cc0000;
+            background-color: #2a2a2a;
+        }
+        
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('carcer.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #cc0000;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ff0000;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #cc0000;
+            font-size: 32px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #cc0000;
+            margin: 10px auto;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .character-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .character-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .character-card:hover .character-image img {
+            transform: scale(1.1);
+        }
+        
+        .character-info {
+            padding: 20px;
+        }
+        
+        .character-info h3 {
+            margin-bottom: 10px;
+            color: #cc0000;
+        }
+        
+        .gameplay-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .gameplay-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .gameplay-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .gameplay-text, .gameplay-media {
+            flex: 1;
+        }
+        
+        .gameplay-media {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .gameplay-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .review-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .reviewer {
+            text-align: right;
+            color: #cc0000;
+            font-weight: bold;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid #cc0000;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #e6e6e6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #cc0000;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+            
+            .about-content, .gameplay-item, .gameplay-item:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Manhunt</div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">Об игре</a></li>
+                        <li><a href="#characters">Персонажи</a></li>
+                        <li><a href="#gameplay">Геймплей</a></li>
+                        <li><a href="#reviews">Рецензии</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MANHUNT: ВЫЖИВАНИЕ ЦЕНОЙ ЖЕСТОКОСТИ</h1>
+            <p>Окунитесь в мрачный мир кровавой охоты, где вы становитесь добычей. Используйте всё, что найдёте, чтобы выжить и отомстить.</p>
+            <a href="#about" class="btn">Узнать больше</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Об игре</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Manhunt — это культовая игра в жанре stealth action, разработанная Rockstar Games и выпущенная в 2003 году. Действие игры разворачивается в вымышленном городе Carcer City, где главный герой Джеймс Эрл Кэш приговорён к смертной казни, но получает шанс на свободу, участвуя в смертельной игре.</p>
+                    <p>Игроку предстоит скрываться в тени, устраивать засады и жестоко расправляться с охотниками, используя подручные предметы и оружие. Уникальная атмосфера напряжения и реалистичная физика делают игру запоминающейся.</p>
+                    <p>Manhunt вызвала споры из-за чрезмерной жестокости, но приобрела статус культовой благодаря уникальному геймплею и мрачной атмосфере.</p>
+                </div>
+                <div class="about-image">
+                    <img src="JEC.jpg" alt="Главный герой Джеймс Эрл Кэш">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="characters" style="background-color: #141414;">
+        <div class="container">
+            <h2 class="section-title">Персонажи</h2>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <div class="character-image">
+                        <img src="JEC.jpg" alt="Джеймс Эрл Кэш">
+                    </div>
+                    <div class="character-info">
+                        <h3>Джеймс Эрл Кэш</h3>
+                        <p>Главный герой, приговорённый к смертной казни, но получивший шанс выжить, участвуя в кровавой охоте.</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-image">
+                        <img src="director.jpg" alt="Лайонел Старквезер">
+                    </div>
+                    <div class="character-info">
+                        <h3>Лайонел Старквезер</h3>
+                        <p>Режиссёр и создатель "Охоты", который наблюдает за действиями Кэша и отдаёт приказы через гарнитуру.</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-image">
+                        <img src="cerberus.jpg" alt="Церберы">
+                    </div>
+                    <div class="character-info">
+                        <h3>Церберы</h3>
+                        <p>Элитный отряд охранников, которые охраняют объекты и участвуют в охоте на Кэша.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gameplay">
+        <div class="container">
+            <h2 class="section-title">Геймплей</h2>
+            <div class="gameplay-content">
+                <div class="gameplay-item">
+                    <div class="gameplay-text">
+                        <h3>Скрытность и засады</h3>
+                        <p>Основной механизм игры — скрытное перемещение и внезапные нападения из укрытий. Игрок должен использовать тени и укрытия, чтобы оставаться незамеченным.</p>
+                    </div>
+                    <div class="gameplay-media">
+                        <img src="JEC.jpg" alt="Скрытность в Manhunt">
+                    </div>
+                </div>
+                
+                <div class="gameplay-item">
+                    <div class="gameplay-text">
+                        <h3>Жестокие executions</h3>
+                        <p>Чем дольше игрок удерживает кнопку атаки, тем более жестоким будет финальное убийство. Эти казни приносят больше очков, но и больше шума.</p>
+                    </div>
+                    <div class="gameplay-media">
+                        <img src="cerberus.jpg" alt="Казни в Manhunt">
+                    </div>
+                </div>
+                
+                <div class="gameplay-item">
+                    <div class="gameplay-text">
+                        <h3>Разнообразное оружие</h3>
+                        <p>В арсенале игрока более 20 видов оружия — от пластиковых пакетов и стекол до огнестрельного оружия. Каждый инструмент имеет свои особенности применения.</p>
+                    </div>
+                    <div class="gameplay-media">
+                        <img src="director.jpg" alt="Оружие в Manhunt">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" style="background-color: #141414;">
+        <div class="container">
+            <h2 class="section-title">Рецензии</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <p class="review-text">"Manhunt — это одна из самых напряжённых и атмосферных игр, в которые я когда-либо играл. Она заставляет почувствовать себя настоящей добычей."</p>
+                    <p class="reviewer">- IGN, 8/10</p>
+                </div>
+                
+                <div class="review-card">
+                    <p class="review-text">"Спорная, шокирующая, но невероятно увлекательная. Manhunt бросает вызов моральным границам видеоигр."</p>
+                    <p class="reviewer">- GameSpot, 7.5/10</p>
+                </div>
+                
+                <div class="review-card">
+                    <p class="review-text">"Ни одна игра не передавала ощущение охоты так, как это делает Manhunt. Мрачная атмосфера и уникальный геймплей делают её культовой."</p>
+                    <p class="reviewer">- Metacritic, 79/100</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Галерея</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="JEC.jpg" alt="Джеймс Эрл Кэш">
+                </div>
+                <div class="gallery-item">
+                    <img src="director.jpg" alt="Лайонел Старквезер">
+                </div>
+                <div class="gallery-item">
+                    <img src="cerberus.jpg" alt="Церберы">
+                </div>
+                <div class="gallery-item">
+                    <img src="carcer.jpg" alt="Carcer City">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Manhunt</div>
+                <div class="footer-links">
+                    <a href="#about">Об игре</a>
+                    <a href="#characters">Персонажи</a>
+                    <a href="#gameplay">Геймплей</a>
+                    <a href="#reviews">Рецензии</a>
+                    <a href="#gallery">Галерея</a>
+                </div>
+                <p class="copyright">© 2023 Фан-сайт Manhunt. Все права принадлежат Rockstar Games. Данный сайт создан в ознакомительных целях.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
